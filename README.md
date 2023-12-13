@@ -35,4 +35,3 @@ JetSleepSounds is a TV-first design, leveraging Jetpack Compose for TV to create
 - Memory management is currently unstable, and optimizations are planned in upcoming releases.
 
 Feel free to contribute, report issues, or provide suggestions as we work towards creating a polished and user-friendly audio experience for TV users.
-
