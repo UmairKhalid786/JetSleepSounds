@@ -2,16 +2,16 @@
 
 package com.techlads.jetsleepsounds.mixer.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.filled.VolumeDown
 import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.runtime.Composable
@@ -19,10 +19,10 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.tv.material3.Button
+import androidx.tv.material3.ButtonDefaults
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.Icon
 import androidx.tv.material3.IconButton
@@ -51,6 +51,8 @@ fun PlayerPreferences(player: Player, hideDetails: () -> Unit) {
         Column (verticalArrangement = Arrangement.spacedBy(8.dp)) {
             VolumePref(player)
             LoopPref(player)
+            SpeedPref(player)
+            PitchPref(player)
         }
 
         Box(
@@ -62,6 +64,70 @@ fun PlayerPreferences(player: Player, hideDetails: () -> Unit) {
             Button(onClick = { hideDetails() }) {
                 Text(text = "Done")
             }
+        }
+    }
+}
+
+@Composable
+fun PitchPref(player: Player) {
+    val pitch = remember { mutableFloatStateOf(player.pitch()) }
+
+    Preference {
+
+        Text(text = "Pitch" , Modifier.weight(1f), style = MaterialTheme.typography.labelLarge)
+
+        IconButton(onClick = {
+            player.pitch(pitch.floatValue - 0.1f)
+            pitch.floatValue = player.pitch()
+        }, shape = ButtonDefaults.shape(RoundedCornerShape(4.dp))) {
+            Icon(
+                imageVector = Icons.Default.Remove,
+                contentDescription = "Remove",
+            )
+        }
+
+        Text(text = "${(pitch.floatValue * 100f).toInt()}", style = MaterialTheme.typography.labelMedium)
+
+        IconButton(onClick = {
+            player.pitch(pitch.floatValue + 0.1f)
+            pitch.floatValue = player.pitch()
+        }, shape = ButtonDefaults.shape(RoundedCornerShape(4.dp))) {
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = "PitchUp",
+            )
+        }
+    }
+}
+
+@Composable
+fun SpeedPref(player: Player) {
+    val speed = remember { mutableFloatStateOf(player.speed()) }
+
+    Preference {
+
+        Text(text = "Speed" , Modifier.weight(1f), style = MaterialTheme.typography.labelLarge)
+
+        IconButton(onClick = {
+            player.speed(speed.floatValue - 0.1f)
+            speed.floatValue = player.speed()
+        }, shape = ButtonDefaults.shape(RoundedCornerShape(4.dp))) {
+            Icon(
+                imageVector = Icons.Default.Remove,
+                contentDescription = "Remove",
+            )
+        }
+
+        Text(text = "${(speed.floatValue * 100f).toInt()}", style = MaterialTheme.typography.labelMedium)
+
+        IconButton(onClick = {
+            player.speed(speed.floatValue + 0.1f)
+            speed.floatValue = player.speed()
+        }, shape = ButtonDefaults.shape(RoundedCornerShape(4.dp))) {
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = "SpeedUp",
+            )
         }
     }
 }
