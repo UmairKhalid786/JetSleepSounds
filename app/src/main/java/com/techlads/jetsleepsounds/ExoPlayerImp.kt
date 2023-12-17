@@ -1,10 +1,12 @@
 package com.techlads.jetsleepsounds
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup.LayoutParams
 import androidx.core.view.updateLayoutParams
 import androidx.media3.common.MediaItem
+import androidx.media3.common.PlaybackParameters
 import androidx.media3.common.Player.Listener
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
@@ -14,6 +16,7 @@ import com.techlads.jetsleepsounds.player.PlayerUi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+
 
 internal class ExoPlayerImp(val exoPlayer: ExoPlayer) : Player {
     var title: String = ""
@@ -73,6 +76,26 @@ internal class ExoPlayerImp(val exoPlayer: ExoPlayer) : Player {
     }
 
     override fun volume(): Float = exoPlayer.volume
+
+    override fun speed() = exoPlayer.playbackParameters.speed
+
+    override fun speed(speed: Float) {
+        if (speed > 2f || speed < 0.1f) {
+            Log.e("ExoPlayerImp", "Speed should be between 0.1f to 2f")
+            return
+        }
+        exoPlayer.setPlaybackSpeed(speed)
+    }
+    override fun pitch() = exoPlayer.playbackParameters.pitch
+
+    override fun pitch(pitch: Float) {
+        if (pitch > 2f || pitch < 0.1f) {
+            Log.e("ExoPlayerImp", "Pitch should be between 0.1f to 2f")
+            return
+        }
+        exoPlayer.playbackParameters = PlaybackParameters(exoPlayer.playbackParameters.speed, pitch)
+    }
+
     override fun setVolume(volume: Float) {
         exoPlayer.volume = volume
     }

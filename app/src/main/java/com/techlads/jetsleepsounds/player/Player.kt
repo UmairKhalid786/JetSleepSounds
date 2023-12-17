@@ -11,9 +11,13 @@ interface Player {
     fun stop()
     fun release()
     fun volume(): Float
+    fun speed(): Float
+    fun speed(speed: Float)
+    fun pitch(): Float
+    fun pitch(pitch: Float)
     fun setVolume(volume: Float)
     fun setOnLoop(enabled: Boolean)
-    fun isOnLoop() : Boolean
+    fun isOnLoop(): Boolean
     fun title(): String
     fun togglePlayPause()
     val isPlaying: Boolean
