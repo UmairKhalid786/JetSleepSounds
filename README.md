@@ -27,7 +27,7 @@ JetSleepSounds is a TV-first design, leveraging Jetpack Compose for TV to create
 ![Mixer](https://github.com/UmairKhalid786/JetSleepSounds/assets/21205138/bf0e753e-0c61-43b2-8a39-74f2621f304c)
 
 ### Player Preferences - More to be added
-![Detailed Preferences](https://github.com/UmairKhalid786/JetSleepSounds/assets/21205138/5f07cf18-a67b-4e18-aeab-ba88e9216841)
+![mixer](https://github.com/UmairKhalid786/JetSleepSounds/assets/21205138/b2dbeb4f-7077-424d-915a-5dfb055dabc8)
 
 ## Important Notes
 - This project is an ongoing ideation, and work is still in progress. Some Compose guidelines have been temporarily ignored for rapid development.
