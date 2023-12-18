@@ -7,6 +7,11 @@ JetSleepSounds is a TV-first design, leveraging Jetpack Compose for TV to create
 - **Background Image Player**: Enjoy a visually appealing experience with background images corresponding to the audio.
 - **Audio Mixer (Work in Progress)**: Customize your experience with volume settings and more.
 
+## Sound effects
+- **Speed** You can control playback speed
+- **Pitch** You have capabilities to change pitch of track
+- **Volume** Volume for each track is also possible 
+
 ## Key Components 
 - **TVLazyHorizontalGrid**: Responsive grid layout for an optimized TV viewing experience.
 - **Crossfade**: Smooth transitions between different states and screens.
@@ -16,7 +21,7 @@ JetSleepSounds is a TV-first design, leveraging Jetpack Compose for TV to create
 - **ExoPlayer**: Powerful and customizable media player for audio playback.
 - **Coil**: Image loading library for efficient image handling.
 - **Cloudy**: *Need information about Cloudy library*.
-- **Lottie**: Seamless integration of Lottie animations for an engaging user experience.
+- **Lottie**: Seamless integration of Lottie animations for an engaging user experience. 
 
 ## Screenshots
 
