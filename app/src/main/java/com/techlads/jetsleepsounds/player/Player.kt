@@ -20,8 +20,29 @@ interface Player {
     fun isOnLoop(): Boolean
     fun title(): String
     fun togglePlayPause()
+    fun setReverb()
+    fun removeReverb()
+    fun isReverb() : Boolean
     val isPlaying: Boolean
     val state: SharedFlow<PlayerState>
+
+    interface Effects {
+        fun setEqualizer()
+        fun removeEqualizer()
+        fun setReverb()
+        fun removeReverb()
+        fun isReverb() : Boolean
+        fun setBassBoost()
+        fun setVirtualizer()
+        fun setPitch(pitch: Float)
+        fun getPitch(): Float
+        fun setSpeed(speed: Float)
+        fun getSpeed(): Float
+        fun setVolume(volume: Float)
+        fun getVolume(): Float
+        fun setOnLoop(enabled: Boolean)
+        fun isOnLoop(): Boolean
+    }
 }
 
 interface PlayerUi {

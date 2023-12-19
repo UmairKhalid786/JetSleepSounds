@@ -16,6 +16,7 @@ import androidx.compose.material.icons.filled.VolumeDown
 import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,6 +28,7 @@ import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.Icon
 import androidx.tv.material3.IconButton
 import androidx.tv.material3.MaterialTheme
+import androidx.tv.material3.Switch
 import androidx.tv.material3.Text
 import com.techlads.jetsleepsounds.mixer.ui.preference.LoopPref
 import com.techlads.jetsleepsounds.mixer.ui.preference.VolumePref
@@ -53,6 +55,7 @@ fun PlayerPreferences(player: Player, hideDetails: () -> Unit) {
             LoopPref(player)
             SpeedPref(player)
             PitchPref(player)
+            ReverbPref(player)
         }
 
         Box(
@@ -97,6 +100,18 @@ fun PitchPref(player: Player) {
                 contentDescription = "PitchUp",
             )
         }
+    }
+}
+
+@Composable
+fun ReverbPref(player: Player) {
+    val reverb = remember { mutableStateOf(player.isReverb()) }
+    Preference {
+        Text(text = "Reverb" , Modifier.weight(1f), style = MaterialTheme.typography.labelLarge)
+        Switch(checked = reverb.value, onCheckedChange = {
+            if (it) player.setReverb() else player.removeReverb()
+            reverb.value = player.isReverb()
+        })
     }
 }
 

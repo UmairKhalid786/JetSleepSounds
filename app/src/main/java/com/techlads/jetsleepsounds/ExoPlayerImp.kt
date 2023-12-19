@@ -8,6 +8,7 @@ import androidx.core.view.updateLayoutParams
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackParameters
 import androidx.media3.common.Player.Listener
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import com.techlads.jetsleepsounds.player.Player
@@ -19,7 +20,8 @@ import kotlinx.coroutines.flow.asSharedFlow
 
 
 internal class ExoPlayerImp(val exoPlayer: ExoPlayer) : Player {
-    var title: String = ""
+    private var title: String = ""
+    private val effects : Player.Effects by lazy { ExoEffects(exoPlayer) }
 
     init {
         exoPlayer.addListener(object : Listener {
@@ -75,42 +77,45 @@ internal class ExoPlayerImp(val exoPlayer: ExoPlayer) : Player {
         exoPlayer.release()
     }
 
-    override fun volume(): Float = exoPlayer.volume
+    override fun volume(): Float = effects.getVolume()
 
-    override fun speed() = exoPlayer.playbackParameters.speed
+    override fun speed() = effects.getSpeed()
 
     override fun speed(speed: Float) {
-        if (speed > 2f || speed < 0.1f) {
-            Log.e("ExoPlayerImp", "Speed should be between 0.1f to 2f")
-            return
-        }
-        exoPlayer.setPlaybackSpeed(speed)
+      effects.setSpeed(speed)
     }
-    override fun pitch() = exoPlayer.playbackParameters.pitch
+
+    override fun pitch() = effects.getPitch()
 
     override fun pitch(pitch: Float) {
-        if (pitch > 2f || pitch < 0.1f) {
-            Log.e("ExoPlayerImp", "Pitch should be between 0.1f to 2f")
-            return
-        }
-        exoPlayer.playbackParameters = PlaybackParameters(exoPlayer.playbackParameters.speed, pitch)
+        effects.setPitch(pitch)
     }
 
     override fun setVolume(volume: Float) {
-        exoPlayer.volume = volume
+       effects.setVolume(volume)
     }
 
     override fun setOnLoop(enabled: Boolean) {
-        exoPlayer.repeatMode = if (enabled) ExoPlayer.REPEAT_MODE_ONE else ExoPlayer.REPEAT_MODE_OFF
+        effects.setOnLoop(enabled)
     }
 
-    override fun isOnLoop() = exoPlayer.repeatMode == ExoPlayer.REPEAT_MODE_ONE
+    override fun isOnLoop() = effects.isOnLoop()
 
     override fun title() = title
 
     override fun togglePlayPause() {
         if (isPlaying) pause() else play()
     }
+
+    @UnstableApi override fun setReverb() {
+        effects.setReverb()
+    }
+
+    override fun removeReverb() {
+        effects.removeReverb()
+    }
+
+    override fun isReverb() = effects.isReverb()
 
     override val isPlaying: Boolean
         get() = exoPlayer.isPlaying
