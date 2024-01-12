@@ -52,6 +52,7 @@ fun PlayerPreferences(player: Player, hideDetails: () -> Unit) {
 
         Column (verticalArrangement = Arrangement.spacedBy(8.dp)) {
             VolumePref(player)
+            LoopPref(player)
             ReverbPref(player)
         }
 
