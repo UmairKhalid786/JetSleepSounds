@@ -1,12 +1,12 @@
 package com.techlads.jetsleepsounds.home
 
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.tv.foundation.lazy.grid.TvGridCells
-import androidx.tv.foundation.lazy.grid.TvLazyHorizontalGrid
 import com.techlads.jetsleepsounds.PlayerBuilder
 import com.techlads.jetsleepsounds.mixer.Mixer.addPlayer
 import com.techlads.jetsleepsounds.songs.TracksFactory
@@ -21,7 +21,7 @@ fun HomeBody(modifier: Modifier) {
     val tracks = remember {
         TracksFactory.getTracks()
     }
-    TvLazyHorizontalGrid(modifier = modifier, rows = TvGridCells.Fixed(3)) {
+    LazyHorizontalGrid(modifier = modifier, rows = GridCells.Fixed(3)) {
 
         items(tracks.size) {
             val ctx = LocalContext.current
