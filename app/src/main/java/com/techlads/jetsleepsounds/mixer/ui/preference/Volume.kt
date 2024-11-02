@@ -2,7 +2,6 @@
 
 package com.techlads.jetsleepsounds.mixer.ui.preference
 
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.VolumeDown
@@ -17,7 +16,6 @@ import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.Icon
 import androidx.tv.material3.IconButton
 import androidx.tv.material3.MaterialTheme
-import androidx.tv.material3.Shapes
 import androidx.tv.material3.Text
 import com.techlads.jetsleepsounds.mixer.ui.Preference
 import com.techlads.jetsleepsounds.player.Player

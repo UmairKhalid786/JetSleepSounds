@@ -1,13 +1,12 @@
 [versions]
-agp = "8.3.2"
-kotlin = "1.9.0"
-coreKtx = "1.12.0"
-appcompat = "1.6.1"
-composeBom = "2023.10.01"
-tvFoundation = "1.0.0-alpha10"
-tvMaterial = "1.0.0-alpha10"
-lifecycleRuntimeKtx = "2.6.2"
-activityCompose = "1.8.1"
+agp = "8.7.2"
+kotlin = "2.0.20"
+coreKtx = "1.15.0"
+appcompat = "1.7.0"
+composeBom = "2024.10.01"
+tvMaterial = "1.0.0"
+lifecycleRuntimeKtx = "2.8.7"
+activityCompose = "1.9.3"
 media3 = "1.4.1"
 
 [libraries]
@@ -19,7 +18,6 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-tv-foundation = { group = "androidx.tv", name = "tv-foundation", version.ref = "tvFoundation" }
 androidx-tv-material = { group = "androidx.tv", name = "tv-material", version.ref = "tvMaterial" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -36,4 +34,5 @@ media3 = [ "media3-exoplayer", "media3-ui" ]
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 

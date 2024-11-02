@@ -1,12 +1,10 @@
 package com.techlads.jetsleepsounds
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup.LayoutParams
 import androidx.core.view.updateLayoutParams
 import androidx.media3.common.MediaItem
-import androidx.media3.common.PlaybackParameters
 import androidx.media3.common.Player.Listener
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
@@ -17,7 +15,6 @@ import com.techlads.jetsleepsounds.player.PlayerUi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
-
 
 internal class ExoPlayerImp(val exoPlayer: ExoPlayer) : Player {
     private var title: String = ""
