@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Remove
@@ -19,12 +19,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.tv.material3.Button
-import androidx.tv.material3.ButtonDefaults
 import androidx.tv.material3.Icon
 import androidx.tv.material3.IconButton
+import androidx.tv.material3.IconButtonDefaults
 import androidx.tv.material3.MaterialTheme
-import androidx.tv.material3.Switch
 import androidx.tv.material3.Text
+import com.techlads.jetsleepsounds.components.JSSCheckbox
 import com.techlads.jetsleepsounds.mixer.ui.preference.LoopPref
 import com.techlads.jetsleepsounds.mixer.ui.preference.VolumePref
 import com.techlads.jetsleepsounds.player.Player
@@ -45,10 +45,12 @@ fun PlayerPreferences(player: Player, hideDetails: () -> Unit) {
             textAlign = TextAlign.Center
         )
 
-        Column (verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.weight(1f).padding(8.dp)) {
             VolumePref(player)
             LoopPref(player)
             ReverbPref(player)
+            SpeedPref(player)
+            PitchPref(player)
         }
 
         Box(
@@ -70,24 +72,33 @@ fun PitchPref(player: Player) {
 
     Preference {
 
-        Text(text = "Pitch" , Modifier.weight(1f), style = MaterialTheme.typography.labelLarge)
+        Text(text = "Pitch", Modifier.weight(1f), style = MaterialTheme.typography.labelLarge)
 
-        IconButton(onClick = {
-            player.pitch(pitch.floatValue - 0.1f)
-            pitch.floatValue = player.pitch()
-        }, shape = ButtonDefaults.shape(RoundedCornerShape(4.dp))) {
+        IconButton(
+            onClick = {
+                player.pitch(pitch.floatValue - 0.1f)
+                pitch.floatValue = player.pitch()
+            },
+            scale = IconButtonDefaults.scale(focusedScale = 1f),
+        ) {
             Icon(
                 imageVector = Icons.Default.Remove,
                 contentDescription = "Remove",
             )
         }
 
-        Text(text = "${(pitch.floatValue * 100f).toInt()}", style = MaterialTheme.typography.labelMedium)
+        Text(
+            text = "${(pitch.floatValue * 100f).toInt()}",
+            style = MaterialTheme.typography.labelMedium
+        )
 
-        IconButton(onClick = {
-            player.pitch(pitch.floatValue + 0.1f)
-            pitch.floatValue = player.pitch()
-        }, shape = ButtonDefaults.shape(RoundedCornerShape(4.dp))) {
+        IconButton(
+            onClick = {
+                player.pitch(pitch.floatValue + 0.1f)
+                pitch.floatValue = player.pitch()
+            },
+            scale = IconButtonDefaults.scale(focusedScale = 1f),
+        ) {
             Icon(
                 imageVector = Icons.Default.Add,
                 contentDescription = "PitchUp",
@@ -100,11 +111,15 @@ fun PitchPref(player: Player) {
 fun ReverbPref(player: Player) {
     val reverb = remember { mutableStateOf(player.isReverb()) }
     Preference {
-        Text(text = "Reverb" , Modifier.weight(1f), style = MaterialTheme.typography.labelLarge)
-        Switch(checked = reverb.value, onCheckedChange = {
-            if (it) player.setReverb() else player.removeReverb()
-            reverb.value = player.isReverb()
-        })
+        Text(text = "Reverb", Modifier.weight(1f), style = MaterialTheme.typography.labelLarge)
+        JSSCheckbox(
+            isChecked = reverb.value,
+            modifier = Modifier.size(20.dp),
+            onCheckedChange = {
+                if (it) player.setReverb() else player.removeReverb()
+                reverb.value = player.isReverb()
+            },
+        )
     }
 }
 
@@ -114,24 +129,33 @@ fun SpeedPref(player: Player) {
 
     Preference {
 
-        Text(text = "Speed" , Modifier.weight(1f), style = MaterialTheme.typography.labelLarge)
+        Text(text = "Speed", Modifier.weight(1f), style = MaterialTheme.typography.labelLarge)
 
-        IconButton(onClick = {
-            player.speed(speed.floatValue - 0.1f)
-            speed.floatValue = player.speed()
-        }, shape = ButtonDefaults.shape(RoundedCornerShape(4.dp))) {
+        IconButton(
+            onClick = {
+                player.speed(speed.floatValue - 0.1f)
+                speed.floatValue = player.speed()
+            },
+            scale = IconButtonDefaults.scale(focusedScale = 1f),
+        ) {
             Icon(
                 imageVector = Icons.Default.Remove,
                 contentDescription = "Remove",
             )
         }
 
-        Text(text = "${(speed.floatValue * 100f).toInt()}", style = MaterialTheme.typography.labelMedium)
+        Text(
+            text = "${(speed.floatValue * 100f).toInt()}",
+            style = MaterialTheme.typography.labelMedium
+        )
 
-        IconButton(onClick = {
-            player.speed(speed.floatValue + 0.1f)
-            speed.floatValue = player.speed()
-        }, shape = ButtonDefaults.shape(RoundedCornerShape(4.dp))) {
+        IconButton(
+            onClick = {
+                player.speed(speed.floatValue + 0.1f)
+                speed.floatValue = player.speed()
+            },
+            scale = IconButtonDefaults.scale(focusedScale = 1f),
+        ) {
             Icon(
                 imageVector = Icons.Default.Add,
                 contentDescription = "SpeedUp",
