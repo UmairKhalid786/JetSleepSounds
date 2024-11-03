@@ -47,7 +47,8 @@ fun PlayersList(onDismissRequest: () -> Unit, onPlayerDetails: (Player) -> Unit 
 
         if (players.isNotEmpty()) {
             LazyColumn(
-                modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)
+                modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = androidx.compose.foundation.layout.PaddingValues(8.dp)
             ) {
                 items(players.size) {
                     Track(players[it]) {
