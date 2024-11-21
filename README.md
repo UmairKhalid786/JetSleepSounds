@@ -9,7 +9,7 @@ JetSleepSounds is a TV-first design, leveraging Jetpack Compose for TV to create
 
 ## Sound effects
 - **Speed** You can control playback speed
-- **Pitch** You have capabilities to change pitch of track
+- **Pitch** You have the capabilities to change the pitch of given track
 - **Volume** Volume for each track is also possible 
 
 ## Key Components 
@@ -22,7 +22,7 @@ JetSleepSounds is a TV-first design, leveraging Jetpack Compose for TV to create
 - **Coil**: Image loading library for efficient image handling.
 - **Cloudy**: *Need information about Cloudy library*.
 - **Lottie**: Seamless integration of Lottie animations for an engaging user experience. 
-
+ 
 ## Screenshots
 
 ### Home Screen 
